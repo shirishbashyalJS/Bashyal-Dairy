@@ -4,9 +4,20 @@ import Items from "../UI/Items";
 import Footer from "../UI/Footer";
 import Login from "./Login";
 import { LoginContext } from "../App";
+import axios from "axios";
 
 function Home({ baseURL }) {
   const { login, setLogin } = useContext(LoginContext);
+  useEffect(() => {
+    axios
+      .get(baseURL + "activate")
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log("Failed to load server");
+      });
+  }, []);
   return login?.name.length < 1 ? (
     <Login login={login} setLogin={setLogin} />
   ) : (

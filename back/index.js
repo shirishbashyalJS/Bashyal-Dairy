@@ -30,6 +30,9 @@ mongoose
   .then((e) => console.log("db connect"))
   .catch((err) => console.log(err));
 
+server.get("/activate", (req, res) => {
+  res.json({ message: "server activated" });
+});
 server.post("/order", async (req, res) => {
   const data = req.body;
   const newOrder = new orders(data);
